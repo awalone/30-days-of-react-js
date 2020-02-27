@@ -38,6 +38,13 @@ class Container extends Component {
                         onComponentRefresh={this.onComponentRefresh.bind(this)}
                         requestRefresh={refreshing}
                         fetchData={fetchEvents} />
+
+                    <Footer>
+                        <button onClick={this.refresh.bind(this)}>
+                            <i className="fa fa-refresh" />
+                            Refresh
+                        </button>
+                    </Footer>
                 </div>
             </div>
         )

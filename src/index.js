@@ -14,6 +14,7 @@ import Timer from './Components/Timeline/Lesson6/Timer'
 
 // untuk lesson 7
 import Container7 from './Components/Timeline/Lesson7/Container'
+import FetchedTimeline from './Components/Timeline/Lesson7/FetchedTimeline'
 
 import * as serviceWorker from './serviceWorker';
 
