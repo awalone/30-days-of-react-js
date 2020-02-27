@@ -9,16 +9,18 @@ import './index.css';
 //import component
 import App from './App';
 import Timeline from './Components/Timeline/Timeline'
-
 import Timer from './Components/Timeline/Lesson6/Timer'
 
+
+// untuk lesson 7
+import Container7 from './Components/Timeline/Lesson7/Container'
 
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
 <div>
     <Timer />
-    <Timeline />
+    <Container7 />
 </div>
 , document.getElementById('root'));
 
