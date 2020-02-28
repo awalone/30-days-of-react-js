@@ -16,12 +16,18 @@ import Timer from './Components/Timeline/Lesson6/Timer'
 import Container7 from './Components/Timeline/Lesson7/Container'
 import FetchedTimeline from './Components/Timeline/Lesson7/FetchedTimeline'
 
+
+
+// untuk lesson 8
+import Container8 from './Components/Timeline/lesson8/Container'
+import FetchecTimeline from './Components/Timeline/lesson8/FetchedTimeline'
+
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
 <div>
     <Timer />
-    <Container7 />
+    <Container8 />
 </div>
 , document.getElementById('root'));
 
