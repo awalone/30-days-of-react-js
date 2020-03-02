@@ -12,10 +12,15 @@ import Timeline from './Components/Timeline/Timeline'
 import Timer from './Components/Timeline/Lesson6/Timer'
 
 
+// untuk tutorial lifecyclecomp
+import ContainerLifeCycle from './Components/LifeCycleComp/ContainerLifeCycle'
+
+//untuk tutorial belajar API
+import ApiContainer from './Components/ApiComp/ApiContainer'
+
 // untuk lesson 7
 import Container7 from './Components/Timeline/Lesson7/Container'
 import FetchedTimeline from './Components/Timeline/Lesson7/FetchedTimeline'
-
 
 
 // untuk lesson 8
@@ -29,12 +34,20 @@ import Container9 from './Components/Timeline/Lesson9/Container'
 // import FetchedTimeline from './Components/Timeline/Lesson9/FetchedTimeline'
 
 
+// untuk containerComponent
+import ContainerComponent from './Components/StyledComponent/ContainerComponent'
+
+
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
 <div>
-    <Timer />
+    {/* <Timer />
     <Container9 />
+    <ContainerComponent /> */}
+
+    {/* <ContainerLifeCycle /> */}
+    <ApiContainer />
 </div>
 , document.getElementById('root'));
 
