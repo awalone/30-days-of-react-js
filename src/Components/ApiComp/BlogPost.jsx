@@ -11,14 +11,15 @@ export default class BlogPost extends Component {
             title: '',
             body: '',
             userId: 1
-        }
+        },
+        isUpdate: false
     }
 
 
     getPostAPI = () => {
         axios.get('http://localhost:3004/posts?_sort=id&_order=desc')
             .then((res) => {
-                console.log(res.data)
+                // console.log(res.data)
                 this.setState({
                     post: res.data
                 })
@@ -36,6 +37,17 @@ export default class BlogPost extends Component {
         })
     }
 
+    handleUpdate = (data) => {
+        console.log(data);
+        this.setState({
+            formBlogPost: data,
+            isUpdate: true
+        })
+        // axios.put(`http://localhost:3004/posts/${data}`).then((res) => {
+        //     console.log(res);
+        // })
+    }
+
 
     //handler untuk form onChange
     handleFormChange = (event) => {
@@ -47,7 +59,10 @@ export default class BlogPost extends Component {
         // console.log('init state : ', this.state.formBlogPost)
         // console.log('new value : ', formBlogPostNew)
         // console.log(event.target.name);
-        formBlogPostNew['id'] = timestamp;
+        if(!this.state.isUpdate ) {
+            formBlogPostNew['id'] = timestamp;
+        }
+        
         formBlogPostNew[event.target.name] = event.target.value;
         let title = event.target.value
         this.setState({
@@ -61,12 +76,26 @@ export default class BlogPost extends Component {
     handleSubmit = () => {
         // console.log(this.state.formBlogPost);
         this.postDataToAPI();
+        if(this.state.isUpdate) {
+            this.putDataToAPI();
+        } else {
+            this.postDataToAPI();
+        }
         
     }
 
 
     postDataToAPI = () => {
         axios.post('http://localhost:3004/posts', this.state.formBlogPost).then((res) => {
+            console.log(res);
+            this.getPostAPI();
+        }, (err) => {
+            console.log('error: ', err);
+        })
+    }
+
+    putDataToAPI = () => {
+        axios.put(`http://localhost:3004/posts/${this.state.formBlogPost.id}`, this.state.formBlogPost).then((res) => {
             console.log(res);
             this.getPostAPI();
         }, (err) => {
@@ -105,9 +134,9 @@ export default class BlogPost extends Component {
 
                 <div className="form-add-post">
                     <label htmlFor="title">Title</label>
-                    <input type="text" name="title" placeholder="add title" onChange={this.handleFormChange} />
+                    <input type="text" name="title" value={this.state.formBlogPost.title} placeholder="add title" onChange={this.handleFormChange} />
                     <label htmlFor="body">Blog Content</label>
-                    <textarea name="body" id="body" cols="30" rows="10" onChange={this.handleFormChange}></textarea>
+                    <textarea name="body" id="body" cols="30" rows="10" onChange={this.handleFormChange} value={this.state.formBlogPost.body}></textarea>
                     <button className="btn-submit" onClick={this.handleSubmit}>Simpan</button>
                 </div>
 
@@ -116,7 +145,7 @@ export default class BlogPost extends Component {
                 {
                     this.state.post.map(post => {
                         // return <Post key={post.id} title={post.title} desc={post.body} remove={this.handleRemove} />
-                        return <Post key={post.id} data={post} remove={this.handleRemove} />
+                        return <Post key={post.id} data={post} remove={this.handleRemove} update={this.handleUpdate} />
                     })
                 }
             </Fragment>
