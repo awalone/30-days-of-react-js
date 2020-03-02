@@ -5,12 +5,18 @@ import axios from 'axios'
 export default class BlogPost extends Component {
 
     state = {
-        post: []
+        post: [],
+        formBlogPost : {
+            id: 1,
+            title: '',
+            body: '',
+            userId: 1
+        }
     }
 
 
     getPostAPI = () => {
-        axios.get('http://localhost:3004/posts')
+        axios.get('http://localhost:3004/posts?_sort=id&_order=desc')
             .then((res) => {
                 console.log(res.data)
                 this.setState({
@@ -27,6 +33,44 @@ export default class BlogPost extends Component {
         axios.delete(`http://localhost:3004/posts/${data}`).then((res) => {
             console.log(res);
             this.getPostAPI();
+        })
+    }
+
+
+    //handler untuk form onChange
+    handleFormChange = (event) => {
+        // console.log('form', event.target)
+
+        let formBlogPostNew = {...this.state.formBlogPost}
+        let timestamp = new Date().getTime();
+        // console.log(timestamp)
+        // console.log('init state : ', this.state.formBlogPost)
+        // console.log('new value : ', formBlogPostNew)
+        // console.log(event.target.name);
+        formBlogPostNew['id'] = timestamp;
+        formBlogPostNew[event.target.name] = event.target.value;
+        let title = event.target.value
+        this.setState({
+            formBlogPost: formBlogPostNew
+        }, () => {
+            // console.log('value obj formBlog : ', this.state.formBlogPost)
+        })
+        
+    }
+
+    handleSubmit = () => {
+        // console.log(this.state.formBlogPost);
+        this.postDataToAPI();
+        
+    }
+
+
+    postDataToAPI = () => {
+        axios.post('http://localhost:3004/posts', this.state.formBlogPost).then((res) => {
+            console.log(res);
+            this.getPostAPI();
+        }, (err) => {
+            console.log('error: ', err);
         })
     }
 
@@ -58,6 +102,16 @@ export default class BlogPost extends Component {
         return (
             <Fragment>
                 <p className="section-title">Blog Post</p>
+
+                <div className="form-add-post">
+                    <label htmlFor="title">Title</label>
+                    <input type="text" name="title" placeholder="add title" onChange={this.handleFormChange} />
+                    <label htmlFor="body">Blog Content</label>
+                    <textarea name="body" id="body" cols="30" rows="10" onChange={this.handleFormChange}></textarea>
+                    <button className="btn-submit" onClick={this.handleSubmit}>Simpan</button>
+                </div>
+
+
                 {/* <Post title="judulnya" desc="Deskripsi Judul" /> */}
                 {
                     this.state.post.map(post => {
