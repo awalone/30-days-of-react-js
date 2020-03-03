@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 
 class Timer extends Component {
 
@@ -39,6 +39,9 @@ class Timer extends Component {
     render() {
         const {hours, minutes, seconds, ampm} = this.state;
         return (
+            <Fragment>
+                <p>Timer</p>
+                <hr />
             <div className="clock">
                 {
                     hours === 0 ? 12 :
@@ -50,6 +53,7 @@ class Timer extends Component {
                     seconds > 9 ? seconds : `0${seconds}`
                 } {ampm}
             </div>
+            </Fragment>
         )
     }
 }

@@ -131,7 +131,7 @@ export default class BlogPost extends Component {
         return (
             <Fragment>
                 <p className="section-title">Blog Post</p>
-
+                <hr />
                 <div className="form-add-post">
                     <label htmlFor="title">Title</label>
                     <input type="text" name="title" value={this.state.formBlogPost.title} placeholder="add title" onChange={this.handleFormChange} />
@@ -143,10 +143,10 @@ export default class BlogPost extends Component {
 
                 {/* <Post title="judulnya" desc="Deskripsi Judul" /> */}
                 {
-                    this.state.post.map(post => {
-                        // return <Post key={post.id} title={post.title} desc={post.body} remove={this.handleRemove} />
-                        return <Post key={post.id} data={post} remove={this.handleRemove} update={this.handleUpdate} />
-                    })
+                    // this.state.post.map(post => {
+                    //     // return <Post key={post.id} title={post.title} desc={post.body} remove={this.handleRemove} />
+                    //     return <Post key={post.id} data={post} remove={this.handleRemove} update={this.handleUpdate} />
+                    // })
                 }
             </Fragment>
         )

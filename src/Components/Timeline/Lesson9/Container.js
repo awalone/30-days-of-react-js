@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 
 import Header from './Header'
 import Footer from './Footer'
@@ -31,6 +31,9 @@ class Container extends Component {
         const {refreshing} = this.state;
 
         return (
+            <Fragment>
+                <p>Timeline</p>
+                <hr />
             <div className='notificationsFrame'>
                 <div className='panel'>
                     <Header title="Github activity"/>
@@ -47,6 +50,7 @@ class Container extends Component {
                     </Footer>
                 </div>
             </div>
+            </Fragment>
         )
     }
 }
