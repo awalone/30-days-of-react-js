@@ -7,6 +7,7 @@ import Timeline from '../Timeline/Lesson9/Container'
 
 // style
 import './ApiContainer.css'
+import DetailPost from './DetailPost'
 
 export default class ApiContainer extends Component {
     render() {
@@ -23,6 +24,7 @@ export default class ApiContainer extends Component {
                 </div>
                 <Route path="/" exact component={Timer} />
                 <Route path="/blog" component={BlogPost} />
+                <Route path="/detail-post/:postId" component={DetailPost} />
                 <Route path="/timeline" component={Timeline} />
             </Fragment>
             

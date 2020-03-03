@@ -11,7 +11,7 @@ const Post = (props) => {
                 {/* <p className="desc">{props.desc}</p> */}
                 {/* <button className="remove" onClick={props.onClick}>Remove</button> */}
 
-                <p className="title">{props.data.title}</p>
+                <p className="title" onClick={() => props.goDetail(props.data.id)}>{props.data.title}</p>
                 <p className="desc">{props.data.body}</p>
                 <button className="update" onClick={() => props.update(props.data)}>Update</button>
                 <button className="remove" onClick={() => props.remove(props.data.id)}>Remove</button>

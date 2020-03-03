@@ -1,0 +1,11 @@
+.detail-title {
+    font-size: 24px;
+    font-weight: bold;
+    color: #673AB7;
+    text-transform: capitalize;
+}
+
+.detail-body {
+    font-size: 16px;
+    color: #607D8B;
+}
